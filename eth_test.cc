@@ -37,6 +37,12 @@ TEST(absl, StrFormat) {
     EXPECT_EQ(s, "aa");
 }
 
-TEST(ethaddr, ethaddr) {
+TEST(ethaddr, inline_ethaddr) {
     EXPECT_EQ(eth_bcast.toStr(), "ff:ff:ff:ff:ff:ff");
+}
+
+TEST(ethaddr, ethaddr) {
+    EthAddr addr;
+    addr.fromStr("aa:bb:cc:dd:ee:ff");
+    EXPECT_EQ(addr.toStr(), "aa:bb:cc:dd:ee:ff");
 }

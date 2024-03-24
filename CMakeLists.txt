@@ -34,14 +34,3 @@ target_link_libraries(
 
 include(GoogleTest)
 gtest_discover_tests(eth_test)
-
-add_executable(
-    eth
-    eth.cc
-)
-
-target_link_libraries(
-  eth
-  absl::strings
-  absl::str_format
-)
