@@ -8,10 +8,19 @@
 class EthAddr {
 public:
     EthAddr() {}
+
     constexpr EthAddr(std::uint64_t hex) : addr{} {
         for (int i = 0; i < 6; ++i) {
-            addr[i] = static_cast<std::byte>((hex >> (40 - 8 * i)) & 0xff);
+            addr[i] = static_cast<std::uint8_t>((hex >> (40 - 8 * i)) & 0xff);
         }
+    }
+
+    bool operator==(const EthAddr &other) {
+      return addr == other.addr;
+    }
+
+    bool operator!=(const EthAddr &other) {
+      return !(*this == other);
     }
 
     int fromStr(std::string_view str) {
@@ -21,8 +30,7 @@ public:
         }
 
         for (int i = 0; i < 6; ++i) {
-            int h = std::stoi(hex[i], nullptr, 16);
-            addr[i] = static_cast<std::byte>(h);
+            addr[i] = std::stoi(hex[i], nullptr, 16);
         }
         return 0;
     }
@@ -32,7 +40,7 @@ public:
                                addr[1], addr[2], addr[3], addr[4], addr[5]); 
     }
 
-    std::array<std::byte, 6> addr;
+    std::array<std::uint8_t, 6> addr;
 };
 
 

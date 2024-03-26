@@ -45,4 +45,8 @@ TEST(ethaddr, ethaddr) {
     EthAddr addr;
     addr.fromStr("aa:bb:cc:dd:ee:ff");
     EXPECT_EQ(addr.toStr(), "aa:bb:cc:dd:ee:ff");
+
+    EthAddr b;
+    b.fromStr("ee:ff:ff:ff:ff:ff");
+    EXPECT_TRUE(b != addr);
 }
